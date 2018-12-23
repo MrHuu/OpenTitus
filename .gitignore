@@ -1,4 +1,6 @@
+build
 opentitus
 *.o
 moktar/*.SQZ
 titus/*.SQZ
+3ds/makerom

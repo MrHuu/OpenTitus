@@ -142,7 +142,9 @@ uint8 RESET_LEVEL(TITUS_level *level) {
 							AUDIOMODE = 0;
 						}
 						if (AUDIOMODE == 1) {
+#ifdef AUDIO_ENABLE
 							startmusic();
+#endif
 						}
 					}
                 } else if (event.type == SDL_KEYUP) {

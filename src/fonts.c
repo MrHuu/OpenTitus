@@ -564,11 +564,18 @@ int viewintrotext(){
     timeinfo = localtime(&rawtime);
 
     SDL_Print_Text("     YEAAA . . .", 0, 5 * 12);
-    sprintf(tmpstring, "YOU ARE STILL PLAYING MOKTAR IN %d !!", timeinfo->tm_year + 1900);
+	if (game == 0) {
+		sprintf(tmpstring, "YOU ARE STILL PLAYING TITUS IN %d !!", timeinfo->tm_year + 1900);
+    } else if (game == 1) {
+		sprintf(tmpstring, "YOU ARE STILL PLAYING MOKTAR IN %d !!", timeinfo->tm_year + 1900);
+	}
     SDL_Print_Text(tmpstring, 0, 6 * 12);
     SDL_Print_Text(" PROGRAMMED IN 1991 ON AT .286 12MHZ.", 0, 12 * 12);
-    SDL_Print_Text("   . . . ENJOY MOKTAR ADVENTURE !!", 0, 13 * 12);
-
+    if (game == 0) {
+		SDL_Print_Text("   . . . ENJOY YOUR TITUS ADVENTURE !!", 0, 13 * 12);
+    } else if (game == 1) {
+		SDL_Print_Text("   . . . ENJOY MOKTAR ADVENTURE !!", 0, 13 * 12);
+	}
     SDL_Flip(screen);
 
     retval = waitforbutton();

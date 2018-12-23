@@ -362,7 +362,7 @@ int enterpassword(){
 
     SDL_Print_Text("CODE", 111, 80);
 
-#ifdef _DINGUX
+#if defined(_DINGUX) || defined(_3DS)
     int index = 0;
     int counter = 0;
 #endif
@@ -377,7 +377,7 @@ int enterpassword(){
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
                     return (-1);
                 }
-#ifdef _DINGUX
+#if defined(_DINGUX) || defined(_3DS)
                 if (event.key.keysym.sym == KEY_UP) {
                     index++;
                     if (index > 15) {
@@ -427,7 +427,7 @@ int enterpassword(){
 #endif
             }
         }
-#ifdef _DINGUX
+#if defined(_DINGUX) || defined(_3DS)
         if (i < 4) {
             counter++;
             if (counter > 10) {

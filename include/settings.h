@@ -29,7 +29,15 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#define OPENTITUS_CONFIG_FILE "titus_moktar.conf"
+#ifdef _3DS
+#ifdef _ROMFS
+#define OPENTITUS_CONFIG_FILE "romfs:/titus.conf"
+#else
+#define OPENTITUS_CONFIG_FILE "sdmc:/3DS/OpenTitus/titus.conf"
+#endif
+#else
+#define OPENTITUS_CONFIG_FILE "titus.conf"
+#endif
 #define OPENTITUS_WINDOW_TEXT "OpenTitus"
 
 //Probably not the best way, but it works...

@@ -65,11 +65,32 @@
 #include "engine.h"
 #include "original.h"
 #include "objects.h"
+#include "globals.h"
+
+#ifdef _3DS
+_Bool isN3DS;
+#endif
 
 int main(int argc, char *argv[]) {
 
     int retval;
+	int romval;
     int state = 1; //View the menu when the main loop starts
+
+#ifdef _3DS
+	APT_CheckNew3DS(&isN3DS);
+	if(isN3DS)
+		osSetSpeedupEnable(true);
+	
+	romval = romfsInit();
+	if (romval)
+		printf("romfsInit: %08lX\n", romval);
+	else
+	{
+		printf("romfs Init Successful!\n");
+	}
+#endif
+	
     retval = init();
     if (retval < 0)
         state = 0;
@@ -116,7 +137,9 @@ int main(int argc, char *argv[]) {
 #endif
 
     SDL_Quit();
-
+#ifdef _3DS
+	romfsExit();
+#endif
     checkerror();
 
     if (retval == -1)
@@ -149,6 +172,11 @@ int init() {
     //fullscreen
     SDL_ShowCursor(SDL_DISABLE);
     screen = SDL_SetVideoMode(reswidth, resheight, bitdepth, SDL_SWSURFACE);
+#elif _3DS
+    //fullscreen
+    SDL_ShowCursor(SDL_DISABLE);
+    screen = SDL_SetVideoMode(reswidth, resheight, bitdepth, SDL_DOUBLEBUF | SDL_FULLSCREEN);
+
 #else
     switch (videomode) {
     case 0: //window mode
@@ -193,9 +221,9 @@ int init() {
     }
 #endif
 */
-
+#ifdef AUDIO_ENABLED
 	initaudio();
-
+#endif
     initoriginal();
 
     initcodes();

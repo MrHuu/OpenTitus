@@ -409,7 +409,7 @@ int flip_screen(bool slow) {
     tick = SDL_GetTicks();
     SUBTIME[14] = tick - oldtick;
     
-#ifdef _DINGUX
+#if defined(_DINGUX) || defined(_3DS)
     if (slow) {
         NO_FAST_CPU(slow);
     }
@@ -451,7 +451,7 @@ NO_FAST_CPU(bool slow) {
 }
 */
 
-NO_FAST_CPU(bool slow) {
+void NO_FAST_CPU(bool slow) {
     int tick, duration, delay, tick2;
     tick = SDL_GetTicks();
     if (slow) {

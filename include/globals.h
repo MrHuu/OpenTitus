@@ -71,6 +71,27 @@
 #define KEY_DEBUG       DINGOO_BUTTON_Y //Toggle debug mode
 #define KEY_MUSIC       DINGOO_BUTTON_Y //Toggle music
 
+#elif _3DS
+
+#define KEY_F1			SDLK_F1			//Loose a life
+#define KEY_F2			SDLK_F2			//Game over
+#define KEY_E			SDLK_y			//Display energy
+#define KEY_F4			SDLK_RETURN		//Status page
+#define KEY_LEFT		SDLK_LEFT		//Left
+#define KEY_RIGHT		SDLK_RIGHT		//Right
+#define KEY_UP			SDLK_UP			//Up
+#define KEY_DOWN		SDLK_DOWN		//Down
+#define KEY_JUMP		SDLK_b			//Up
+#define KEY_SPACE		SDLK_a			//Space
+#define KEY_ENTER		SDLK_KP_ENTER	//Enter
+#define KEY_RETURN		SDLK_r			//Return
+#define KEY_ESC			SDLK_ESCAPE		//Quit
+#define KEY_P			SDLK_s			//Toggle pause
+#define KEY_NOCLIP		SDLK_n			//Toggle noclip
+#define KEY_GODMODE		SDLK_g			//Toggle godmode
+#define KEY_DEBUG		SDLK_LSHIFT		//Toggle debug mode
+#define KEY_MUSIC		SDLK_RSHIFT		//Toggle music
+
 #else
 
 #define KEY_F1 SDLK_F1 //Loose a life

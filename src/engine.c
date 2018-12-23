@@ -411,7 +411,7 @@ int death(TITUS_level *level) {
 #ifdef AUDIO_ENABLED
     WAIT_SONG();
 #endif
-#ifndef _DINGUX
+#if !defined(_DINGUX) && !defined(_3DS)
     CLOSE_SCREEN();
 #endif
 }

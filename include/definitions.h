@@ -29,7 +29,9 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-#include <unistd.h> //bool
+//#include <unistd.h> //bool
+
+
 
 typedef unsigned char uint8;
 typedef unsigned short int uint16;
@@ -42,4 +44,7 @@ typedef enum _bool bool;
 
 enum _bool{false, true};
 
+#ifdef _3DS
+#include <3ds.h>
+#endif
 #endif
