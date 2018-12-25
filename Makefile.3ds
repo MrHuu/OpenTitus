@@ -27,8 +27,8 @@ include $(DEVKITARM)/3ds_rules
 #
 #---------------------------------------------------------------------------------
 
-GAME			:= TITUS
-ROMFS			:= output/romfs
+#GAME			:= MOKTAR
+#ROMFS			:= output/romfs
 
 #---------------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ else
 	GAME		:= TITUS
 endif
 
-TARGET			:=	OpenTitus
+TARGET			:= OpenTitus
 BUILD			:= build
 SOURCES			:= ./ src
 DATA			:= data
@@ -60,8 +60,6 @@ OPL_FILES = opl_src/opl_sdl.c \
 			opl_src/opl_timer.c \
 			opl_src/ioperm_sys.c
 
-#SOURCES     += $(SOURCES) $(OPL_FILES)
-
 ifneq ($(ROMFS),)
 	APP_DIR	:= $(ROMFS)
 else
@@ -74,30 +72,26 @@ endif
 ifeq ($(GAME),MOKTAR)
 	APP_INFO        := $(RESOURCES)/moktar.Info
 	BANNER_AUDIO    := $(RESOURCES)/audio
-	BANNER_IMAGE    := $(RESOURCES)/banner
-	ICON            := $(RESOURCES)/Moktar_icon_48x48.png
-	RSF             := $(TOPDIR)/$(RESOURCES)/moktar.rsf
-	
+	BANNER_IMAGE    := $(RESOURCES)/moktar_banner
+	ICON            := $(RESOURCES)/moktar_icon_48x48.png
 	ifneq ($(ROMFS),)
 		APP_CONF	:= $(RESOURCES)/moktar.romfs.conf
 	else
 		APP_CONF	:= $(RESOURCES)/moktar.conf
 	endif
-	
 else
 	APP_INFO        := $(RESOURCES)/titus.Info
 	BANNER_AUDIO    := $(RESOURCES)/audio
-	BANNER_IMAGE    := $(RESOURCES)/banner
-	ICON            := $(RESOURCES)/Titus_icon_48x48.png
-	RSF             := $(TOPDIR)/$(RESOURCES)/titus.rsf
-	
+	BANNER_IMAGE    := $(RESOURCES)/titus_banner
+	ICON            := $(RESOURCES)/titus_icon_48x48.png
 	ifneq ($(ROMFS),)
 		APP_CONF	:= $(RESOURCES)/titus.romfs.conf
 	else
 		APP_CONF	:= $(RESOURCES)/titus.conf
 	endif
-	
 endif
+
+RSF					:= $(TOPDIR)/$(RESOURCES)/template.rsf
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -234,15 +228,15 @@ endif
 
 APP_ICON := $(TOPDIR)/$(ICON)
 
-ifneq ($(ROMFS),)
-	APP_ROMFS := $(TOPDIR)/$(ROMFS)
-endif
-
 COMMON_MAKEROM_PARAMS := -rsf $(RSF) -target t -exefslogo -elf $(OUTPUT_FILE).elf -icon icon.icn \
 -banner banner.bnr -DAPP_TITLE="$(APP_TITLE)" -DAPP_PRODUCT_CODE="$(APP_PRODUCT_CODE)" \
--DAPP_UNIQUE_ID="$(APP_UNIQUE_ID)" -DAPP_ROMFS="$(APP_ROMFS)" -DAPP_SYSTEM_MODE="64MB" \
--DAPP_SYSTEM_MODE_EXT="Legacy" -major "$(APP_VERSION_MAJOR)" -minor "$(APP_VERSION_MINOR)" \
--micro "$(APP_VERSION_MICRO)"
+-DAPP_UNIQUE_ID="$(APP_UNIQUE_ID)" -DAPP_SYSTEM_MODE="64MB" -DAPP_SYSTEM_MODE_EXT="Legacy" \
+-major "$(APP_VERSION_MAJOR)" -minor "$(APP_VERSION_MINOR)" -micro "$(APP_VERSION_MICRO)"
+
+ifneq ($(ROMFS),)
+	APP_ROMFS := $(TOPDIR)/$(ROMFS)
+	COMMON_MAKEROM_PARAMS += -DAPP_ROMFS="$(APP_ROMFS)" 
+endif
 
 ifeq ($(OS),Windows_NT)
 	MAKEROM = makerom.exe

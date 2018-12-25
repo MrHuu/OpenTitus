@@ -33,7 +33,7 @@
 #ifdef _ROMFS
 #define OPENTITUS_CONFIG_FILE "romfs:/titus.conf"
 #else
-#define OPENTITUS_CONFIG_FILE "sdmc:/3DS/OpenTitus/titus.conf"
+#define OPENTITUS_CONFIG_FILE "sdmc:/3ds/opentitus/titus.conf"
 #endif
 #else
 #define OPENTITUS_CONFIG_FILE "titus.conf"
