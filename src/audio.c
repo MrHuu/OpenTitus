@@ -56,7 +56,15 @@
 #define ADLIB_INSTRUMENT_COUNT 19
 #define ADLIB_SFX_COUNT 14
 
+#ifdef _LOW_FREQ
+//#define FREQ_RATE 22050
+#define FREQ_RATE 20000
+//#define FREQ_RATE 16537
+//#define FREQ_RATE 11025
+#else
 #define FREQ_RATE 44100
+#endif
+
 #define BUF_SIZE 2048
 
 #define ADLIB_PORT 0x388
